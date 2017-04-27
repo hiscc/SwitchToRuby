@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Image url</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ps.each do |p| %>
+      <tr>
+        <td><%= p.title %></td>
+        <td><%= p.description %></td>
+        <td><%= p.image_url %></td>
+        <td><%= p.price %></td>
+        <td><%= link_to 'Show', p %></td>
+        <td><%= link_to 'Edit', edit_p_path(p) %></td>
+        <td><%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New P', new_p_path %>
