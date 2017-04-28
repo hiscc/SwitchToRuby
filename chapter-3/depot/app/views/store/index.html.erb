@@ -1,0 +1,18 @@
+<h1>Store#index</h1>
+<p id="notice"><%= notice%></p>
+<p>Find me in app/views/store/index.html.erb</p>
+
+<% cache @ps do %>
+<% @ps.each do |p| %>
+<% cache p do %>
+<div class="entry">
+    <%= image_tag(p.image_url) %>
+    <h3><%= p.title %></h3>
+    <%= sanitize(p.description) %>
+    <div class="price_line">
+        <span class="price"><%= number_to_currency(p.price) %></span>
+    </div>
+</div>
+<% end %>
+<% end %>
+<% end %>
