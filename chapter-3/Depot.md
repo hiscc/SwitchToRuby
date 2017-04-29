@@ -69,3 +69,10 @@ end
 **rails dev:cache**
 
 设置缓存
+
+### Cart Creation
+
+**rails g scaffold Cart**
+**rails db:migrate**
+
+创建 Cart 模型， 提交更改
