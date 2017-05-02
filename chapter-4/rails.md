@@ -105,6 +105,12 @@ end
 def edit
   @teacher = Teacher.where("id = #{params[:id]}").first
   @teacher = Teacher.where("id = ?", params[:id]).first
-  @teacher = Teacher.find params[:id]
+  @teacher = Teacher.find(params[:id])
 end
 ```
+
+### rails 多约定少配置
+
+控制器定义接通模型与视图关系， 只定义逻辑操作。 在控制器内各种操作
+模型与视图互通
+辅助方法， destroy 方法特殊配置。
