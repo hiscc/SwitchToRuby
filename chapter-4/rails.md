@@ -114,3 +114,22 @@ end
 控制器定义接通模型与视图关系， 只定义逻辑操作。 在控制器内各种操作
 模型与视图互通
 辅助方法， destroy 方法特殊配置。
+
+
+## 操作
+
+为已存在的表添加索引
+
+**rails g migration add_index_to_email_users**
+
+在 db/migrate 文件内使用 add_index 方法， 并确定唯一性： unique: true
+
+在读写操作前的预操作 before_save { email.downcase! } 全写为 { self.email = email.downcase }
+
+在模型内添加密码哈希计算 has_secure_password 会在数据库内自动添加 password_digest 列。 在表单域内须有 password_digest 属性。 并且我们会获得 authenticate 方法， 密码正确返回对象否则为 false。
+
+为了添加 password_digest 属性我们需要再次修改数据模型
+
+rails g migration add_password_digest_to_users password_digest:string
+
+为 users 添加 password_digest 列
