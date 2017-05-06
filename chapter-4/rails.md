@@ -133,3 +133,10 @@ end
 rails g migration add_password_digest_to_users password_digest:string
 
 为 users 添加 password_digest 列
+
+
+bcrypt 无法载入的问题
+
+1. gem uninstall bcrypt => uninstall all versions
+2. gem i bcrypt --platform=ruby
+3. add *gem 'bcrypt', platforms: :ruby* to Gemfile
