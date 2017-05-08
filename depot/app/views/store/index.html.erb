@@ -1,0 +1,16 @@
+<h1>Store#index</h1>
+<% cache @products do %>
+<%  @products.each do |p| %>
+<% cache p do %>
+<div class="enter">
+    <%= image_tag(p.image_url) %>
+    <h3><%= sanitize(p.description) %></h3>
+    <div class="price_line">
+        <span class="price">
+            <%= p.price %>
+        </span>
+    </div>
+</div>
+<% end %>
+<% end %>
+<% end %>
