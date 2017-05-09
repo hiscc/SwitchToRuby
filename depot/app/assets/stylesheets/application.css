@@ -49,7 +49,7 @@ body, body>p, body>ol, body>ul, body>td {
 }
 
 #columns {
-    background: #141;
+    background: #9e9e9e;
     display: flex;
     #main {
         padding: 1em;
@@ -58,7 +58,7 @@ body, body>p, body>ol, body>ul, body>td {
     }
     #side {
         padding: 1em 2em;
-        background: #141;
+        background: #9e9e9e;
         ul {
             padding: 0;
             li {
