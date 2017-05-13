@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<ul>
+<%= render @cart %>
+<!-- <ul>
     <% @cart.line_items.each do |i| %>
     <li><%= i.quantity %>&times;<%= i.product.title %></li>
     <% end %>
 </ul>
 <table>
-    <% @cart.line_items.each do |item| %>
-    <tr>
-        <td><%= item.quantity %>&times;</td>
-        <td><%= item.product.title %></td>
-        <td class="item_price"><%= number_to_currency(item.total_price) %></td>
-    </tr>
-    <% end %>
+    <%= render(@cart.line_items) %>
     <tr class="total_line">
         <td colspan="2">Total</td>
         <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
@@ -21,4 +16,4 @@
 <%= button_to 'empty cart', @cart, method: :delete, data: {confirm: 'sure?'} %>
 <%= link_to 'Edit', edit_cart_path(@cart) %>
 |
-<%= link_to 'Back', carts_path %>
+<%= link_to 'Back', carts_path %> -->
