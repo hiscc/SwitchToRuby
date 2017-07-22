@@ -1,18 +1,2 @@
 <p id="notice"><%= notice %></p>
-<h2>你的购物车:</h2>
-<table>
-  <% @cart.line_items.each do |item| %>
-    <tr>
-      <td><%= item.quantity %>&times; </td>
-      <td><%= item.product.title %></td>
-      <td class="item_price"><%= number_to_currency(item.total_price, unins: '$') %></td>
-      <td><%= button_to 'delete',item,  method: :delete %></td>
-    </tr>
-
-  <% end %>
-  <tr class="total_line">
-    <td colspan="2">Total</td>
-    <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
-  </tr>
-</table>
-<%= button_to 'empty cart', @cart, method: :delete, data: {confirm: 'are u sure?'} %>
+<%= render @cart %>

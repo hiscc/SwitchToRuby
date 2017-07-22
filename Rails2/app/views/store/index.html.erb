@@ -1,17 +1,16 @@
-
 <p id="notice"><%= notice %></p>
 <h1>Your Catalog</h1>
 <% cache @products do %>
 <% @products.each do |product| %>
 <% cache product do %>
 <div class="entry">
-<%= image_tag(product.image_url) %>
-<h3><%= product.title %></h3>
-<%= sanitize(product.description) %>
-<div class="price_line">
-<span class="price"><%= number_to_currency(product.price, unit: :￥) %></span>
-<%= button_to 'Add to Cart', line_items_path(product_id: product) %>
-</div>
+  <%= image_tag(product.image_url) %>
+  <h3><%= product.title %></h3>
+  <%= sanitize(product.description) %>
+  <div class="price_line">
+    <span class="price"><%= number_to_currency(product.price, units: :￥) %></span>
+    <%= button_to 'Add to Cart', line_items_path(product_id: product), remote: true %>
+  </div>
 </div>
 <% end %>
 <% end %>
