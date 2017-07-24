@@ -1,5 +1,12 @@
-<tr>
+<% if line_item == @current_item %>
+<tr id="current_item">
+  <% else %>
+  <tr>
+<% end %>
   <td><%= line_item.quantity %>&times;</td>
+  <td><%= button_to '-', decrement_line_item_path(line_item), method: :put , remote: true %></td>
+  <td><%= button_to '+', add_line_item_path(line_item), method: :put , remote: true %></td>
   <td><%= line_item.product.title %></td>
-  <td class="item_price"><%= number_to_currency(line_item.total_price, units: '$') %></td>
+  <td class="item_price"><%= number_to_currency(line_item.product.price, units: '$') %></td>
+  <td><%= button_to '删除此商品',line_item, method: :delete %></td>
 </tr>

@@ -1,3 +1,4 @@
+<% unless cart.line_items.empty? %>
 <h2>你的购物车:</h2>
 <table>
   <%= render(cart.line_items) %>
@@ -6,4 +7,12 @@
     <td class="total_cell"><%= number_to_currency(cart.total_price) %></td>
   </tr>
 </table>
-<%= button_to 'empty cart', cart, method: :delete, data: {confirm: 'are u sure?'} %>
+<% unless current_page?(new_order_path) %>
+  <%= button_to 'checkout', new_order_path, method: :get %>
+<% end %>
+
+<% if @order.nil? %>
+<%= button_to '清空购物车', cart, method: :delete, data: {confirm: 'are u sure?'}, remote: true %>
+<% end %>
+
+<% end %>

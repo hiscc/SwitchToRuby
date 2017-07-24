@@ -1,6 +1,6 @@
 class LineItemsController < ApplicationController
   include CurrentCart
-  before_action :set_cart, only: [:create]
+  before_action :set_cart, only: [:create, :decrement, :add]
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -33,7 +33,7 @@ class LineItemsController < ApplicationController
     respond_to do |format|
       if @line_item.save
         format.html { redirect_to store_index_url}
-        format.js
+        format.js {@current_item = @line_item}
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }
@@ -42,6 +42,34 @@ class LineItemsController < ApplicationController
     end
   end
 
+  def decrement
+      # @cart = current_cart
+      @line_item = @cart.line_items.find_by_id(params[:id])
+      @line_item = @line_item.decrement_quantity(@line_item.id)
+
+      respond_to do |format|
+        if @line_item.save
+            format.html {redirect_to store_index_path, notice: 'line item updated'}
+            format.js {@current_item = @line_item}
+            format.json {head :ok}
+          else
+            format.html {render action: 'edit'}
+            format.js {@current_item = @line_item}
+            format.json {render json: @line_item.errors, status: :unprocessable_entity}
+        end
+      end
+  end
+  def add
+    @line_item = @cart.line_items.find_by_id(params[:id])
+    @line_item = @line_item.add_quantity(@line_item.id)
+
+    respond_to do |format|
+      if @line_item.save
+          format.html {redirect_to store_index_path, notice: 'add successful'}
+          format.js {@current_item = @line_item}
+      end
+    end
+  end
   # PATCH/PUT /line_items/1
   # PATCH/PUT /line_items/1.json
   def update
@@ -61,7 +89,7 @@ class LineItemsController < ApplicationController
   def destroy
     @line_item.destroy
     respond_to do |format|
-      format.html { redirect_to line_items_url, notice: 'Line item was successfully destroyed.' }
+      format.html { redirect_to store_index_url, notice: 'Line item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
