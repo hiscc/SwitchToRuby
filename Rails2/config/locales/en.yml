@@ -30,4 +30,30 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  layouts:
+    application:
+      title: 'book store'
+      home: 'Home'
+      questions: 'Questions'
+      news: 'News'
+      contact: 'Contact'
+
+  store:
+    index:
+      title_html: 'your PaCATALOG'
+      add_html: 'add to cart'
+
+  carts:
+    cart:
+      title: 'my cart'
+      empty: 'empty my cart'
+      checkout: 'checkout'
+
+  number:
+    currency:
+      format:
+        unit: '$'
+        precision: 2
+        separator: '.'
+        delimiter: '.'
+        format: '%u%n'

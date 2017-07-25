@@ -10,8 +10,18 @@
 
   <body class="<%= controller.controller_name %>">
     <div id="banner">
+
+      <%= form_tag store_index_path, class: 'locale' do %>
+       <%= select_tag 'set_locale',
+       options_for_select(LANGUAGES, I18n.locale.to_s),
+       onchange: 'this.form.submit()' %>
+       <%= submit_tag 'submit' %>
+       <%= javascript_tag "$('.locale input').hide()" %>
+       <% end %>
+
       <%= image_tag 'logo.png', alt:'logo' , width: '100px' %>
       <span class="title"><%= @page_title %></span>
+      <h3><%= @page_title %></h3>
     </div>
     <div id="columns">
       <div id="side">
@@ -23,10 +33,11 @@
           <% end %>
         </div>
         <ul>
-          <li><a href="">Home</a></li>
-          <li><a href="">Questions</a></li>
-          <li><a href="">News</a></li>
-          <li><a href="">Contact</a></li>
+          <li><a href=""><%= t('.home') %></a></li>
+          <li><a href=""><%= t('.questions') %></a></li>
+          <li><a href=""><%= t('.news') %></a></li>
+          <li><a href=""><%= t('.contact') %></a></li>
+          <li><a href=""><%= page_title %></a></li>
           <p><%= date_loaded %></p>
           <p><%= pluralize( counter, 'times') %></p>
         </ul>

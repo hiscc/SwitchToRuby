@@ -1,5 +1,5 @@
 <% unless cart.line_items.empty? %>
-<h2>你的购物车:</h2>
+<h2><%= t('.title') %></h2>
 <table>
   <%= render(cart.line_items) %>
   <tr class="total_line">
@@ -8,11 +8,11 @@
   </tr>
 </table>
 <% unless current_page?(new_order_path) %>
-  <%= button_to 'checkout', new_order_path, method: :get %>
+  <%= button_to t('.checkout'), new_order_path, method: :get %>
 <% end %>
 
 <% if @order.nil? %>
-<%= button_to '清空购物车', cart, method: :delete, data: {confirm: 'are u sure?'}, remote: true %>
+<%= button_to t('.empty'), cart, method: :delete, data: {confirm: 'are u sure?'}, remote: true %>
 <% end %>
 
 <% end %>
