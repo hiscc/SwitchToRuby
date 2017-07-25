@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :date_loaded, :counter
   before_action :set_i18n_locale_from_params
+  before_action :authorize
   # before_action :counter
   def date_loaded
     return Time.now
@@ -27,6 +28,13 @@ class ApplicationController < ActionController::Base
      logger.error flash.now[:notice]
      end
      end
+     end
+
+     def authorize
+       unless User.find_by(id: session[:user_id])
+         session[:original_uri] = request.request_uri
+         redirect_to login_url, notice: 'Please log in'
+       end
      end
 
 end

@@ -40,8 +40,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    current_password = params[:user].delete(:current_password)
+
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.update(user_params) && @user.authenticate(current_password)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -59,6 +61,10 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  rescue_from 'User::Error' do |msg|
+    redirect_to users_url, notice: msg.message
   end
 
   private

@@ -1,3 +1,4 @@
+<div class="depot_form">
 <%= form_with(model: user, local: true) do |form| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -16,6 +17,13 @@
     <%= form.text_field :name, id: :user_name %>
   </div>
 
+  <% if params[:action] == 'edit' || params[:action] == 'update' %>
+   <div class="field">
+     <%= form.label :current_password, 'Current password:' %>
+     <%= form.password_field :current_password, size: 40 %>
+   </div>
+   <% end %>
+
   <div class="field">
     <%= form.label :password %>
     <%= form.password_field :password, id: :user_password %>
@@ -30,3 +38,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+</div>

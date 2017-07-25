@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  resources :upload 
+  get 'admin' => 'admin#index'
+
+  controller :sessions do
+    get 'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
+  resources :upload
   resources :pictures
   resources :users
   resources :orders

@@ -6,6 +6,7 @@ zh:
       questions: '问答'
       news: '新闻'
       contact: '联系'
+      order: '订单'
 
   store:
     index:

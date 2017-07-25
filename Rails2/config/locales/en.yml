@@ -37,6 +37,7 @@ en:
       questions: 'Questions'
       news: 'News'
       contact: 'Contact'
+      order: 'Orders'
 
   store:
     index:
